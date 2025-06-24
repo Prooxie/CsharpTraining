@@ -10,6 +10,6 @@ static String ReturnDay(int DayofTheWeek)
         case 5: return "Friday";
         case 6: return "Saturday";
         case 7: return "Sunday";
-        _: return "Unknown";
+        default: return "Unknown";
     }
 }
