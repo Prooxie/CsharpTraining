@@ -113,4 +113,52 @@ public string RegistrationNumber
 }
 
 
+
+
+
 IMPORTANT - LINQ - Language integrated query
+
+
+var result = numbers.Where(cislo => cislo > 5);
+
+foreach var item i nresult
+
+var sortedNames = names.OrberBy (n => n);
+Console.WriteLine($"OrderBy: {string.Join(", ", sortedNames)}");
+
+var descNumbers = names.OrberBy (n => n);
+Console.WriteLine($"OrderByDescending: {string.Join(", ", descNumbers)}");
+
+Console.WriteLine($"Averageg: {numbers.Average()}");
+
+Console.WriteLine($"Min: {{numbers.Min()}, Max: {numbers.Max()}");
+
+Union - sjednocení - String.Join(", ", set1.Union(set2))}:);
+
+Intersekt - Průnik - String.Join(", ", set1.Intesect(set2))}:);
+
+Except - Rozdíl - String.Join(", ", set1.Except(set2))}:);
+
+var rs = numbers.Take(3); - Vezme první tři
+
+
+numbers.Skip(3).Take(3); - Přeskočí první tři, Vezme další tři
+
+numbers.TakeWhile(n => n < 5) - Vezme dokud podmínka
+
+numbers.SkipWhile(n => n < 5) - Přeskočí dokud podmínka
+
+var quotation = numbers.Select(n => n * n); -- projede, ztransformuje a ve vysledech bude ve výsledné kolekci
+
+Select - Výběr - String.Join(", ", quotation)}:);
+
+Any, All, 
+names.Contains("JMÉNO") - vrací boolean
+
+.ToLower() 
+.ToUpper()
+
+
+names.Select(x => x.ToLower()).Contains("anna");
+
+names.Order(x => x).First();
