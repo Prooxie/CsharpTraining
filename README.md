@@ -50,7 +50,67 @@ Switch podporuje string.
 
 Internal = v rámci našeho projektu
 
+Statická metoda potřebu mít prefix Static
+
+Return je poslední volání metody
+
+Enum DenVTydnu
+{ 
+	[Description("Pondělí")]
+}
+
+Tuple Například: (Double, Int) -- Jako struktura ale jen dočasná
+Structure - Records
+Record = immutable - datové objekty
 
 
+static DenVTydnu GetDayOfWeekInfo(int dayNumber)
+{
+	var den = GetDayOfWeek_SwitchExpression(dayNumber);
+	var jeViken = dayNumber == 6 ||
+}
+
+public override string ToString()
+	=> $"Car {ID} RegNum: {RegistrationNumber} Brand:{Brand}";
+
+public string Brand { get; } = "Skoda" // Vyhnout se NULLu
+
+Public bool ChangeRegNumber(string newRegNumber)
+{
+	RegistrationNumber = newRegNumber;
+}
 
 
+Class má kromě property i třídy
+
+private int id;
+
+Csharp je samozřejmě case-sensitive
+
+Property, Metody, Třidy =CamelCase
+fieldy, instance, proměnné = malý písmena, _ před readonly
+
+
+custom setter
+
+public string RegistrationNumber
+{
+
+	get
+		{
+ 			return _regNumber;
+		}
+
+	set 
+		{
+			if (value.Length > 9) 
+			{
+				Console.WriteLine("Error - Registration too long");
+			}
+
+			_regNumber = value.SubString(0,9);
+		}
+}
+
+
+IMPORTANT - LINQ - Language integrated query
