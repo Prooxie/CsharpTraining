@@ -18,13 +18,13 @@ int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 string[] words = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
 // 1. Najdi všechna čísla menší než 5
-Console.WriteLine($" {String.Join(", ", numbers.Where(c => c < 5))}");
+Console.WriteLine($" {String.Join(", ", numbers.Where(n => n < 5))}");
 // 2. Najdi všechna sudá čísla
-Console.WriteLine($" {String.Join(", ", numbers.Where(c => c % 2 == 0))}");
+Console.WriteLine($" {String.Join(", ", numbers.Where(n => n % 2 == 0))}");
 // 3. Seřaď čísla vzestupně
-Console.WriteLine($" {String.Join(", ", numbers.OrderBy(c => c))}");
+Console.WriteLine($" {String.Join(", ", numbers.OrderBy(n => n))}");
 // 4. Najdi slova kratší než 4 znaky
-Console.WriteLine($" {String.Join(", ", words.Where(s => s.Length < 4))}");
+Console.WriteLine($" {String.Join(", ", words.Where(n => n.Length < 4))}");
 // 5. Vezmi prvních 5 čísel
 Console.WriteLine($" {String.Join(", ", numbers.Take(5))}");
 // 6. Přeskoč první 3 čísla a vezmi zbytek
