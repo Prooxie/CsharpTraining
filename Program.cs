@@ -67,7 +67,7 @@ foreach (var city_people in result)
 {
     Console.WriteLine($"City: {city_people.City}");
     Console.WriteLine($"Count: {city_people.Count}");
-    Console.WriteLine($"Name: { city_people.Names}");
+    Console.WriteLine($"Name: { string.Join(", ", city_people.Names)}");
     Console.WriteLine();
 
 };
