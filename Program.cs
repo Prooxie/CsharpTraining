@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System;
 using System.Linq;
 
 static String ReturnDay(int DayofTheWeek)
@@ -35,4 +36,42 @@ Console.WriteLine($" {String.Join(", ", numbers.Skip(3))}");
 Console.WriteLine($" {String.Join(", ", words.Where(w => w.StartsWith("f")).Select(w => w.Length).Sum())}");
 // 8. Existuje slovo delší nez 6 znaků
 Console.WriteLine($" {String.Join(", ", words.Any(w => w.Length > 6))}");
+// 9. Návratová hodnota Tuple - Kombinace uppercase a lowercase
+//var tupleTask = words.
+//Select(static w => w.(Upper: w.ToUpper, Lower: w.ToLower()));
+
+//foreach (var tuple in tupleTask)
+//Console.WriteLine($"Lowercase: {tupleTask.Lower}, Uppercase: {tupleTask.Upper} ");
+
+var people = new[]
+{
+    new { Name = "Jan", City = "Praha", Age = 25},
+    new { Name = "Jana", City = "Brno", Age = 21},
+    new { Name = "Eva", City = "Olomouc", Age = 35},
+    new { Name = "Tomáš", City = "Spořice", Age = 51},
+    new { Name = "Marek", City = "Jirkov", Age = 52},
+    new { Name = "Daniel", City = "Louny", Age = 20}
+};
+
+// 10. Věková kategorie (pod 30, 30 a více), kolik je ve skupině, jak se jmenují
+
+var result = people.GroupBy(x => x.Age < 30 ? "Pod 30 let" : "30 a více")
+      .Select(g => new
+      {
+          City = g.Key,
+          Count = g.Count(),
+          Names = g.Select(p => p.Name).ToList()
+      });
+
+foreach (var city_people in result)
+{
+    Console.WriteLine($"City: {city_people.City}");
+    Console.WriteLine($"Count: {city_people.Count}");
+    Console.WriteLine("Name: " + string.Join(", ", city_people.Names));
+    Console.WriteLine();
+
+};
+
+
+
 
