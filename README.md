@@ -48,6 +48,9 @@ if length = null;
 Switch podporuje string.
 
 
+Internal = v rámci našeho projektu
+
+
 
 
 
