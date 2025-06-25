@@ -201,3 +201,13 @@ File.WriteAllLines
 var combinedPath = Path.Combine("home", "user", "subdir", "soubor.txt"); -- DŮLEŽÍTÉ! Pro cestu mezi OS
 
 File.ReadAllLines("file.ext");
+
+Zkopírovat JSON - Visual studio, Upravit, Vložit jinak, Vložit JSON z klipbordu -- DŮLEŽÍTÉ, AUTOMATICKÝ ROZEZNÁ TŘÍDY A ČLENY.
+
+CTRL + Tečka nebo refactoring
+
+Refactor umí několik věcí, například přejmenovat soubor, pokud se přejmenuje třída.
+
+Je možné přidat reference v dependencies mezi projekty atd.
+
+Třida Json může dělat např. serializaci

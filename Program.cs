@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 using System.Linq;
+using DataAccess;
+using Model;
 
 static String ReturnDay(int DayofTheWeek)
 {
@@ -125,4 +127,7 @@ foreach (var item in averagePrice)
 }
 
 
+var newPeople = JsonDataset
+    .LoadData(@"d:\Documents\data2024.json");
 
+Console.WriteLine($"Loaded: {newPeople.Count}");
