@@ -9,7 +9,7 @@ using Model;
 
 namespace DataAccess
 {
-    public class PeopleDbConxtext : DbContext
+    public class PeopleDbContext : DbContext
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -18,7 +18,7 @@ namespace DataAccess
 
         public string DbPath { get; }
 
-        public PeopleDbConxtext()
+        public PeopleDbContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);

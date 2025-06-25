@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(PeopleDbConxtext))]
+    [DbContext(typeof(PeopleDbContext))]
     [Migration("20250625094510_AccessFix")]
     partial class AccessFix
     {

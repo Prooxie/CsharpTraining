@@ -20,8 +20,13 @@ static String ReturnDay(int DayofTheWeek)
     }
 }
 
-int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-string[] words = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+int[] value = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+int[] numbers = value;
+
+string[] substrings = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+string[] words = substrings;
 
 // 1. Najdi všechna čísla menší než 5
 Console.WriteLine($" {String.Join(", ", numbers.Where(n => n < 5))}");
@@ -131,7 +136,7 @@ foreach (var item in averagePrice)
 var newPeople = JsonDataset
     .LoadData(@"d:\Documents\data2024.json");
 
-var db = new PeopleDbConxtext();
+var db = new PeopleDbContext();
 
 var personCount = db.Persons.Count();
 

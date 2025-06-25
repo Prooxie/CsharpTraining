@@ -211,3 +211,15 @@ Refactor umí několik věcí, například přejmenovat soubor, pokud se přejme
 Je možné přidat reference v dependencies mezi projekty atd.
 
 Třida Json může dělat např. serializaci
+
+Entity framework (EF)
+
+O/RM - Object-relational mapper.
+
+Code first / Database first (dva postupy)
+
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Add-Migration InitialCreate - Při code first vytvoří databázi podle kódu
+Update-Database
+
+Immediate window uprostřed breakpointingu pro změnu za běhu
