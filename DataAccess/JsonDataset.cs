@@ -1,15 +1,15 @@
-﻿using Model;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Model;
 
 namespace DataAccess
 {
     public class JsonDataset
     {
-        public static List<Person> LoadData(string aPath)
+        public static List<Person> LoadData(string path)
         {
-            var fileContent = File.ReadAllText(aPath);
+            var fileContent = File.ReadAllText(path);
             var people = JsonSerializer
-                         .Deserialize<List<Person>>(fileContent);
+                        .Deserialize<List<Person>>(fileContent);
 
             return people;
         }

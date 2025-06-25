@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 static String ReturnDay(int DayofTheWeek)
@@ -91,7 +92,7 @@ var carBrand = cars
       {
           Brand = g.Key,
           Count = g.Count(),
-      });
+      }); 
 
 foreach (var item in carBrand)
 {
@@ -130,4 +131,51 @@ foreach (var item in averagePrice)
 var newPeople = JsonDataset
     .LoadData(@"d:\Documents\data2024.json");
 
-Console.WriteLine($"Loaded: {newPeople.Count}");
+var db = new PeopleDbConxtext();
+
+var personCount = db.Persons.Count();
+
+if (personCount == 0)
+{
+    db.Persons.AddRange(newPeople);
+
+    var changed = db.SaveChanges();
+
+
+    Console.WriteLine($"Change in db: {changed}");
+}
+else
+{
+    Console.WriteLine($"Incorrect, all values saved already");
+}
+
+
+// 1. města a kolik v každěm městě osob a vypište do konzole
+// řešení bez vazby
+//var cities = db.Addresses.GroupBy(x => x.City);
+
+// řešení s vazbou
+//var cities = db.Persons
+//    .Include(x => x.Address)
+//    .Where(x => x.Address != null)
+//    .GroupBy(x => x.Address.City);
+
+// 2. upravte na pouze 20 nejčastěších měst
+var cities = db.Persons
+    .Include(x => x.Address)
+    .Where(x => x.Address != null)
+    .GroupBy(x => x.Address.City)
+    .ToList()
+    .OrderByDescending(g => g.Count())
+    .Take(20)
+    ;
+
+foreach (var city in cities)
+{
+    Console.WriteLine($"město: {city.Key}, počet lidí: {city.Count()}");
+}
+
+//3. kolik je v systému smluv (Contracts)
+
+int contractsCount = db.Contracts.Count();
+Console.WriteLine($"Počet smluv: {contractsCount}");
