@@ -129,7 +129,7 @@ Console.WriteLine($"OrderBy: {string.Join(", ", sortedNames)}");
 var descNumbers = names.OrberBy (n => n);
 Console.WriteLine($"OrderByDescending: {string.Join(", ", descNumbers)}");
 
-Console.WriteLine($"Averageg: {numbers.Average()}");
+Console.WriteLine($"Average: {numbers.Average()}");
 
 Console.WriteLine($"Min: {{numbers.Min()}, Max: {numbers.Max()}");
 
@@ -162,3 +162,42 @@ names.Contains("JMÉNO") - vrací boolean
 names.Select(x => x.ToLower()).Contains("anna");
 
 names.Order(x => x).First();
+
+DAY 2
+
+Dědičná třída dědí pouze z jedné třídy ale Tlist může z několika najednou. 
+
+iEnumerable
+
+iEnumerator
+
+Vyhledávat si třídy (interface) protože jejich stránka narozdíl od Delphi nemá popis jedním řádkem.
+
+Interface Dictionary, GUI, stack
+
+public ICollection<T>
+
+Dictionary<Tkey, TValue> - Také se jí říká hashmap. Může to být definovaný jakymkoliv typem, ale ten typ musí existovat v době volání.
+Předpokládá se, že se k ním nebude volat pararelné (skrz více než 1 thread)
+
+CurrentQE
+
+var a = int.Parse("15");
+
+
+var d1 = new Datetime(2025, 05, 01);
+
+var d2 = new Datetime(2025, 03, 11);
+
+TimeSpan ts xx =  d1 - d2;
+
+var t = TimeSpan.FromMinutes(1200);
+
+
+File.ReadAllLines("file.ext");
+File.WriteAllLines
+
+
+var combinedPath = Path.Combine("home", "user", "subdir", "soubor.txt"); -- DŮLEŽÍTÉ! Pro cestu mezi OS
+
+File.ReadAllLines("file.ext");

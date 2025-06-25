@@ -37,11 +37,10 @@ Console.WriteLine($" {String.Join(", ", words.Where(w => w.StartsWith("f")).Sele
 // 8. Existuje slovo delší nez 6 znaků
 Console.WriteLine($" {String.Join(", ", words.Any(w => w.Length > 6))}");
 // 9. Návratová hodnota Tuple - Kombinace uppercase a lowercase
-//var tupleTask = words.
-//Select(static w => w.(Upper: w.ToUpper, Lower: w.ToLower()));
+var tupleTask = words.Select( w => ( w.ToUpper(), Upper: w.ToLower()));
 
-//foreach (var tuple in tupleTask)
-//Console.WriteLine($"Lowercase: {tupleTask.Lower}, Uppercase: {tupleTask.Upper} ");
+foreach (var tuple in tupleTask)
+Console.WriteLine($"Lowercase: {tuple.Item1}, Uppercase: {tuple.Upper} ");
 
 var people = new[]
 {
@@ -84,7 +83,8 @@ var cars = new[]
 
 // 1. Počet aut podle značky
 
-var carBrand = cars.GroupBy(x => x.Brand)
+var carBrand = cars
+      .GroupBy(x => x.Brand)
       .Select(g => new
       {
           Brand = g.Key,
