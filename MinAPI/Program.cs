@@ -22,14 +22,6 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () => "Hello from API");
 
-
-app.MapGet("/person/{id}", (int id, PeopleDbContext db)
-    => db.Persons
-    .Include(x => x.Address)
-    .Include(x => x.Contracts)
-    .Where(person => person.Id == id).First()
-    );
-
 app.MapGet("/person/count", (PeopleDbContext db)
     => db.Contracts.Count()
     );

@@ -223,3 +223,14 @@ Add-Migration InitialCreate - Při code first vytvoří databázi podle kódu
 Update-Database
 
 Immediate window uprostřed breakpointingu pro změnu za běhu
+
+API - Jeden framework, kterým se dají psát různé typy animaci ale pořád stejný základ
+
+Dependency injection
+
+int contractsCount = db.Contracts.Count();
+Console.WriteLine($"Počet smluv: {contractsCount}");
+
+HttpClient client = new();
+
+Console.WriteLine($"String: {await client.GetStringAsync("https://localhost:7257")}");

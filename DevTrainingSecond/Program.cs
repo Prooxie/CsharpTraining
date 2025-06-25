@@ -1,11 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net.Http.Json;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Model;
 
-static String ReturnDay(int DayofTheWeek)
+static string ReturnDay(int DayofTheWeek)
 {
     switch (DayofTheWeek)
     {
@@ -29,26 +31,26 @@ string[] substrings = { "zero", "one", "two", "three", "four", "five", "six", "s
 string[] words = substrings;
 
 // 1. Najdi všechna čísla menší než 5
-Console.WriteLine($" {String.Join(", ", numbers.Where(n => n < 5))}");
+Console.WriteLine($" {string.Join(", ", numbers.Where(n => n < 5))}");
 // 2. Najdi všechna sudá čísla
-Console.WriteLine($" {String.Join(", ", numbers.Where(n => n % 2 == 0))}");
+Console.WriteLine($" {string.Join(", ", numbers.Where(n => n % 2 == 0))}");
 // 3. Seřaď čísla vzestupně
-Console.WriteLine($" {String.Join(", ", numbers.OrderBy(n => n))}");
+Console.WriteLine($" {string.Join(", ", numbers.OrderBy(n => n))}");
 // 4. Najdi slova kratší než 4 znaky
-Console.WriteLine($" {String.Join(", ", words.Where(w => w.Length < 4))}");
+Console.WriteLine($" {string.Join(", ", words.Where(w => w.Length < 4))}");
 // 5. Vezmi prvních 5 čísel
-Console.WriteLine($" {String.Join(", ", numbers.Take(5))}");
+Console.WriteLine($" {string.Join(", ", numbers.Take(5))}");
 // 6. Přeskoč první 3 čísla a vezmi zbytek
-Console.WriteLine($" {String.Join(", ", numbers.Skip(3))}");
+Console.WriteLine($" {string.Join(", ", numbers.Skip(3))}");
 // 7. Součet znaků začínající na "f"
-Console.WriteLine($" {String.Join(", ", words.Where(w => w.StartsWith("f")).Select(w => w.Length).Sum())}");
+Console.WriteLine($" {string.Join(", ", words.Where(w => w.StartsWith("f")).Select(w => w.Length).Sum())}");
 // 8. Existuje slovo delší nez 6 znaků
-Console.WriteLine($" {String.Join(", ", words.Any(w => w.Length > 6))}");
+Console.WriteLine($" {string.Join(", ", words.Any(w => w.Length > 6))}");
 // 9. Návratová hodnota Tuple - Kombinace uppercase a lowercase
-var tupleTask = words.Select( w => ( w.ToUpper(), Upper: w.ToLower()));
+var tupleTask = words.Select(w => (w.ToUpper(), Upper: w.ToLower()));
 
 foreach (var tuple in tupleTask)
-Console.WriteLine($"Lowercase: {tuple.Item1}, Uppercase: {tuple.Upper} ");
+    Console.WriteLine($"Lowercase: {tuple.Item1}, Uppercase: {tuple.Upper} ");
 
 var people = new[]
 {
@@ -74,10 +76,11 @@ foreach (var city_people in result)
 {
     Console.WriteLine($"City: {city_people.City}");
     Console.WriteLine($"Count: {city_people.Count}");
-    Console.WriteLine($"Name: { string.Join(", ", city_people.Names)}");
+    Console.WriteLine($"Name: {string.Join(", ", city_people.Names)}");
     Console.WriteLine();
 
-};
+}
+        ;
 
 var cars = new[]
 {
@@ -97,7 +100,7 @@ var carBrand = cars
       {
           Brand = g.Key,
           Count = g.Count(),
-      }); 
+      });
 
 foreach (var item in carBrand)
 {
@@ -184,3 +187,47 @@ foreach (var city in cities)
 
 int contractsCount = db.Contracts.Count();
 Console.WriteLine($"Počet smluv: {contractsCount}");
+
+Console.WriteLine($"Starting...");
+
+Console.WriteLine($"Please enter an ID of a person.");
+string line = Console.ReadLine();
+
+int id = 0;
+
+try
+{
+    id = int.Parse(line);
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Failed to convert ID to a number.");
+}
+
+HttpClient client = new();
+client.BaseAddress = new Uri("https://localhost:7257");
+
+var homeText = await client.GetStringAsync("/");
+
+while (true)
+{
+    Console.Write("Input Person ID: ");
+    var Input = Console.ReadLine(); // get input from user
+
+    if ( (Input == "Q") || (Input == "q") )
+        break;
+
+    try
+    {
+        id = int.Parse(Input); // parse user input (string) to integer
+    }
+    catch (Exception)
+    {
+
+        Console.WriteLine("Wrong input!");
+        continue;
+    }
+
+    var person = await client.GetFromJsonAsync<Person>($"/person/{id}");
+    Console.WriteLine($"Person with ID {id}: {person.FirstName} {person.LastName}");
+}
